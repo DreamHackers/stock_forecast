@@ -1,0 +1,29 @@
+{
+  "name": "stock_forecast",
+  "version": "0.1.0",
+  "description": "yahoo stock forecast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DreamHackers/stock_forecast.git"
+  },
+  "keywords": [
+    "stock",
+    "forecast"
+  ],
+  "author": "Gaddict",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DreamHackers/stock_forecast/issues"
+  },
+  "homepage": "https://github.com/DreamHackers/stock_forecast#readme",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "mysql": "^2.10.2",
+    "request": "^2.67.0",
+    "sequelize": "^3.18.0"
+  }
+}
