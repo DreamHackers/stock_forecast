@@ -1,2 +1,4 @@
 # stock_forecast
-yahoo stock forecast crowing
+
+## 概要
+Yahooの株価予想をクローリングして勝てる銘柄予想をする
