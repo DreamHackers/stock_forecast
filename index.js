@@ -2,7 +2,7 @@
 var sequelize = require("sequelize");
  
 //Connect to database
-var connection = new sequelize('データベース名', 'ユーザ名', 'パスワード', {オプション: '値'});
+var connection = new sequelize('stock_forecast', 'root', 'password',{} );
  
 // Define models
 var sites = connection.define("sites", {
@@ -43,13 +43,7 @@ request({url: requestUrl}, function(error, response, body) {
         site.title = title;
  
         // Save to database
-        site.save()
-            .success(function(anotherTask) {
-                console.log('Succeed');
-            })
-            .error(function(error) {
-                console.log(error);
-            });
+        site.save();
     }
  
     // If error occured
