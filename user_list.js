@@ -1,28 +1,21 @@
-//Initialize instance
-var Sequelize = require("sequelize");
+module.exports = function(page, users) {
 
-//Connect to database
-var connection = new Sequelize('stock_forecast', 'root', 'password',{} );
-
-// Define models
-var users = connection.define('users', {
-    user_id: { type: Sequelize.STRING(4), allowNull: false}
-});
-
-// ----
+console.log("user_list " + page + " " + users);
 
 //Initialize instance
-var request = require("request");
-var cheerio = require("cheerio");
-var ulParser = require('./ul_parser.js');
+const request = require("request");
+const cheerio = require("cheerio");
+const ulParser = require('./ul_parser.js');
 
-// ----
+var result = 0;
 
 // Define request url
-var requestUrl = "http://info.finance.yahoo.co.jp/kabuyoso/specialist/disp_no/?p=2";
+var requestUrl = "http://info.finance.yahoo.co.jp/kabuyoso/specialist/disp_no/?p="+page;
 
 // Send http request
 request({url: requestUrl}, function(error, response, body) {
+
+  console.log("request");
 
     // If request succeed
     if (!error && response.statusCode == 200) {
@@ -33,22 +26,19 @@ request({url: requestUrl}, function(error, response, body) {
         var data = $().parseul();
 
         for (d of data) {
+          var usr = null;
+
+          users.findOne({where: {user_id: d}}).then((u) => {
+            usr = u;
+          });
+
+          if (usr == null) {
+            result++;
+          }
+
           users.findOrCreate({where: {user_id: d}});
-
-
-          // // Create new instance
-          // var user = users.build();
-          //
-          // // Set fields
-          // user.user_id = d;
-          //
-          // // Save to database
-          // user.save();
         }
 
-        // console.log(data);
-
-        // Get response data
         var url = response.request.href;
         var title = $("title").text();
 
@@ -78,3 +68,6 @@ request({url: requestUrl}, function(error, response, body) {
         }
     }
 });
+
+return result;
+}

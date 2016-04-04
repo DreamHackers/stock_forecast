@@ -42,7 +42,7 @@ var forecasts = connection.define('forecasts', {
     },
     win: { type: Sequelize.INTEGER }, // 1:勝ち、0:負け、9:予想中
     start_date: { type: Sequelize.DATE },
-    position: { type: Sequelize.BOOLEAN }, // 1:買い、2:売り
+    position: { type: Sequelize.BOOLEAN }, // 1:買い、0:売り
     span: { type: Sequelize.INTEGER }, // 1:1日、7:１週、30:１ヶ月
     stock_code: {
       type: Sequelize.STRING(4),

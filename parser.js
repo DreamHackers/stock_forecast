@@ -27,21 +27,21 @@ module.exports = function($) {
                     y = 0;
                 for (x = 0; x < rowspan; x++) {
                     for (y = 0; y < colspan; y++) {
-                        if (columns[curr_y + y] === undefined) {
-                            columns[curr_y + y] = []
+                        if (columns[curr_x + x] === undefined) {
+                            columns[curr_x + x] = []
                         }
 
-                        while (columns[curr_y + y][curr_x + x] !== undefined) {
-                            curr_y += 1
-                            if (columns[curr_y + y] === undefined) {
-                                columns[curr_y + y] = []
+                        while (columns[curr_x + x][curr_y + y] !== undefined) {
+                            curr_x += 1
+                            if (columns[curr_x + x] === undefined) {
+                                columns[curr_x + x] = []
                             }
                         }
 
                         if ((x === 0 || dupRows) && (y === 0 || dupCols)) {
-                            columns[curr_y + y][curr_x + x] = content
+                            columns[curr_x + x][curr_y + y] = content
                         } else {
-                            columns[curr_y + y][curr_x + x] = ""
+                            columns[curr_x + x][curr_y + y] = ""
                         }
                     }
                 }
